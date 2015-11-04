@@ -8,7 +8,9 @@ When writing your solution, please abide by the following conditions:
 
 ## Background
 Imagine that a company ExampleCo provides shared web hosting services to multiple customers for the purposes of serving static files (for example, image or movie files). The hosting is provided under a single website where each customer has their own top-level directory.
+
 ￼￼￼The names of the customer directories may be any valid directory name. The directory structure beneath each customer’s directory is under the customer’s own control.
+
 ExampleCo charges its customers on a monthly basis based on the total bytes transmitted in response to requests for their files. The entire website is served from a single webserver instance. It generates a set of access log files in the standard Apache Combined Log Format and these log files contain a line for each HTTP request which is made to the server. A summary of this log file format is contained in a later section.
 
 ## ￼Requirements
@@ -17,6 +19,7 @@ The aim of the exercise is to produce a Python script to process a set of access
 2. The total number of GB of responses served per top-level customer directory.
 3. The top 10 URLs sorted by number of requests, including the number of requests for each.
 The script should take a directory as a command-line argument and it should assume all files in this directory are access log files. The Apache Combined Log Format used for these files is covered in more detail in the following section.
+
 The script should process all such log files, calculate the above statistics across all log entries so found and finally print the statistics to standard output. You may assume that the script is to be run by systems administrators rather than general users, but that they will not be familiar with Python so output such as stack backtraces should be avoided.
 
 ## Clarifications
@@ -26,7 +29,7 @@ When calculating the statistics, the following clarifications should also be tak
 * The top 10 URLs by number of requests should only take account of requests that resulted in 2xx responses – any error requests (e.g. 404) should not be counted.
 * All requests may be treated identically irrespective of method (e.g. GET, POST, PUT, etc.).
 ￼An example of the style of output to be produced for some sample data is shown below:
-
+```
     ￼￼￼￼￼￼￼￼Off-site requests: 3920 of 12000 (32.67%)
 
     Top 10 URLs:
@@ -60,6 +63,7 @@ When calculating the statistics, the following clarifications should also be tak
              0.77 GB - joyline
              6.07 GB - sandanfase
              3.06 GB – mediaplus
+```
 
 ## ￼Access Log Format
 The format of the access logs is a space-separated list of fields, some of which are enclosed in double-quotes. The list of fields is:
@@ -73,5 +77,6 @@ The format of the access logs is a space-separated list of fields, some of which
 * User-Agent – the content of the User-Agent header enclosed in quotes. This is a string identifying the client application making the request.
 If a double-quote character occurs in a double-quoted field, it is escaped by prefixing it with a backslash. Similarly, backslash characters themselves are represented by a double- backslash.
 A sample log line in this format is shown below (note that it is wrapped for space reasons here, but it represents a single line in the real log file):
-
+```
 ￼￼￼￼￼￼    171.3.142.225 - - [12/07/2011:00:15:32 +0000] "GET /ontozoom/data/cepheid.dat HTTP/1.1" 200 8871065 "http://www.fixlab.com/cherry.html" "Mozilla/4.5 RPT-HTTPClient/0.3- 2"
+```
